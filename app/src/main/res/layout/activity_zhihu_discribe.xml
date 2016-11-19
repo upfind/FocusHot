@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_zhihu_discribe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.upfinder.focushot.Activity.ZhihuDescribeActivity"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbTop"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="1dp"
+        android:outlineProvider="none"
+        android:title="测试显示"
+        android:titleTextColor="@color/white"
+        />
+
+    <cn.upfinder.uilibrary.View.ProgressTypeLayout
+        android:id="@+id/ptlProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <cn.upfinder.uilibrary.View.SwipeView
+                android:id="@+id/svRefreshLoad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                >
+
+                <WebView
+                    android:id="@+id/wvDescribe"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </cn.upfinder.uilibrary.View.SwipeView>
+
+        </LinearLayout>
+
+    </cn.upfinder.uilibrary.View.ProgressTypeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.upfinder.focushot.Fragment.SwipeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <cn.upfinder.uilibrary.View.ProgressTypeLayout
+        android:id="@+id/ptlProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <cn.upfinder.uilibrary.View.SwipeView
+                android:id="@+id/svRefreshLoad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                >
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#eeeeee"/>
+
+            </cn.upfinder.uilibrary.View.SwipeView>
+
+        </LinearLayout>
+    </cn.upfinder.uilibrary.View.ProgressTypeLayout>
+
+</LinearLayout>

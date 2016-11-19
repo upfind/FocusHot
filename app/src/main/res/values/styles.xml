@@ -1,0 +1,61 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:titleTextColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+
+    <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <!-- 窗口的背景颜色 -->
+        <item name="android:windowBackground">@color/window_gray</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+    <!--首次进入无黑色-->
+    <style name="welcomeTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@mipmap/ic_launcher</item>
+    </style>
+
+    <style name="Toolbar" parent="Theme.AppCompat">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">#FFF</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:textColorSecondary">#FFF</item>
+        <item name="actionMenuTextColor">#FFF</item>
+    </style>
+
+    <style name="TextStyle_title_golden">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/text_color_golden</item>
+    </style>
+
+    <style name="TextStyle_gray">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textColor">@color/text_color_qianhui</item>
+    </style>
+
+</resources>

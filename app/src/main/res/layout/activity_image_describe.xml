@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_image_describe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.upfinder.focushot.Activity.ImageDescribeActivity">
+
+
+    <uk.co.senab.photoview.PhotoView
+        android:id="@+id/ivBigImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transitionName="@string/beauty"
+        />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#3b000000"
+        android:elevation="1dp"
+        android:outlineProvider="none"
+        android:title="@string/app_name"
+        >
+
+    </android.support.v7.widget.Toolbar>
+</RelativeLayout>

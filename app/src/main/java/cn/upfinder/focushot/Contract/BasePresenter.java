@@ -1,0 +1,9 @@
+package cn.upfinder.focushot.Contract;
+
+/**
+ * Created by upfinder on 2016/10/28 0028.
+ */
+
+public interface BasePresenter {
+    void start();
+}

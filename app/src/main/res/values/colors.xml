@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
+
+    <color name="google_blue">#4285F4</color>
+    <color name="google_red">#EA4335</color>
+    <color name="google_green">#34A853</color>
+    <color name="google_yellow">#FBBC05</color>
+
+
+    <color name="title_bag">#2196F3</color>
+    <color name="text_color_context">#666666</color><!-- 字体颜色  标题灰色 -->
+    <color name="bag_gray">#f4f4f4</color>
+    <color name="bag_gray_transparent">#00FFFFFF</color>
+    <color name="text_color_golden">#fe6925</color>
+    <color name="window_gray">#f4f4f4</color>
+    <color name="text_color_qianhui">#999999</color><!-- 字体颜色  标题灰色 -->
+
+</resources>

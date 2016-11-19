@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">聚焦</string>
+
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="title_fragment_news">新闻资讯</string>
+    <string name="title_fragment_it">IT干货</string>
+    <string name="title_fragment_jock">轻松段子</string>
+    <string name="title_fragment_media">图片视频</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="beauty">美女</string>
+</resources>
