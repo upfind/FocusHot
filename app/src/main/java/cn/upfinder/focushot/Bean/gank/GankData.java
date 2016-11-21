@@ -136,6 +136,11 @@ public class GankData {
 
         public void setImages(String[] images) {
             this.images = images;
+
+        }
+
+        public String toString() {
+            return createdAt + "-作者：" + who + "-来自：" + source;
         }
     }
 }

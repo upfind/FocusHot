@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 
+import cn.upfinder.focushot.Fragment.AboutFragment;
 import cn.upfinder.focushot.Fragment.BeautyFragment;
 import cn.upfinder.focushot.Fragment.TabPagerFragment;
 import cn.upfinder.focushot.Fragment.SwipeFragment;
@@ -25,11 +26,13 @@ public class HomeActivity extends AppCompatActivity
 
     private RelativeLayout rlContent;
     //切换的Fragment
-    private TabPagerFragment newsTabFragment;
+    private TabPagerFragment newsTabFragment; //聚合新闻
     private FragmentManager fragmentManager;
-    private TabPagerFragment itTabFragment;
-    private SwipeFragment swipeFragment;
-    private BeautyFragment beautyFragment;
+    private TabPagerFragment itTabFragment; //IT资讯
+    private SwipeFragment swipeFragment; //测试
+    private TabPagerFragment mediaTabFragment; //多媒体
+
+    private AboutFragment aboutFragment; //关于我
 
     private Toolbar toolbar;
 
@@ -139,13 +142,22 @@ public class HomeActivity extends AppCompatActivity
                 toolbar.setTitle(getString(R.string.title_fragment_jock));
                 break;
             case R.id.nav_media:
-                if (beautyFragment != null) {
-                    transaction.show(beautyFragment);
+                if (mediaTabFragment != null) {
+                    transaction.show(mediaTabFragment);
                 } else {
-                    beautyFragment = BeautyFragment.newInstance("", "");
-                    transaction.add(R.id.content_home, beautyFragment);
+                    mediaTabFragment = TabPagerFragment.newInstance(TabPagerFragment.ARG_MEDIA);
+                    transaction.add(R.id.content_home, mediaTabFragment);
                 }
                 toolbar.setTitle(getString(R.string.title_fragment_media));
+                break;
+            case R.id.nav_about:
+
+                if (aboutFragment != null) {
+                    transaction.show(aboutFragment);
+                } else {
+                    aboutFragment = AboutFragment.newInstance("", "");
+                    transaction.add(R.id.content_home, aboutFragment);
+                }
                 break;
         }
         transaction.commit();
@@ -163,8 +175,12 @@ public class HomeActivity extends AppCompatActivity
         if (swipeFragment != null) {
             fragmentTransaction.hide(swipeFragment);
         }
-        if (beautyFragment != null) {
-            fragmentTransaction.hide(beautyFragment);
+        if (mediaTabFragment != null) {
+            fragmentTransaction.hide(mediaTabFragment);
+        }
+
+        if (aboutFragment != null) {
+            fragmentTransaction.hide(aboutFragment);
         }
     }
 

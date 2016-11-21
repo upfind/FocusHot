@@ -90,7 +90,7 @@ public class JuheNewFragment extends BaseFragment implements JuheNewContract.Vie
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getContext(), BrowserActivity.class);
 //                intent.setData(Uri.parse(adapter.getItem(position).getUrl()));
-                intent.setData(Uri.parse("http://www.miaopai.com/show/BL0xXGQvC3qU06IZwl0YSQ__.htm"));
+                intent.setData(Uri.parse("http://jx.71ki.com/index.php?url=http://v.youku.com/v_show/id_XMTgyNzY0MDMwNA==.html?spm=a2htv.20009910.m_86821.5~5~5!2~5!2~A&from=y1.3-tv-grid-1007-9910.86827-86824-86821.2-1"));
                 startActivity(intent);
             }
         });

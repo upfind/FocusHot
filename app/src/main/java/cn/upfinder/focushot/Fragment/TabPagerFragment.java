@@ -24,6 +24,7 @@ public class TabPagerFragment extends Fragment {
     private static final String ARG_PARAM = "param";
     public static final int ARG_NEWS = 21;
     public static final int ARG_IT = 22;
+    public static final int ARG_MEDIA = 23;
     @BindView(R.id.tblIT)
     TabLayout tblIT;
     @BindView(R.id.vpIT)
@@ -77,6 +78,9 @@ public class TabPagerFragment extends Fragment {
                 break;
             case ARG_NEWS: //显示新闻相关
                 initNewsFragments();
+                break;
+            case ARG_MEDIA: //加载多媒体相关
+                initMediaFragments();
                 break;
         }
     }
@@ -137,12 +141,28 @@ public class TabPagerFragment extends Fragment {
         fragments.add(JuheNewFragment.newInstance(JuheNewFragment.ARG_JUNSHI));
         fragments.add(JuheNewFragment.newInstance(JuheNewFragment.ARG_SHISHANG));
 
-        vpIT.setOffscreenPageLimit(10);
+        vpIT.setOffscreenPageLimit(3);
         adapter = new ITPagerAdapter(getChildFragmentManager(), tabTitle, fragments);
         vpIT.setAdapter(adapter);
         //将TabLayout和ViewPager关联起来
         tblIT.setupWithViewPager(vpIT);
         //给TabLayout设置设配器
+        tblIT.setTabsFromPagerAdapter(adapter);
+    }
+
+    private void initMediaFragments() {
+        Log.d(TAG, "initMediaFragments: 初始化多媒体相关的");
+        tabTitle = new ArrayList<>();
+        tabTitle.add("妹子");
+        tabTitle.add("休息视频");
+
+        fragments = new ArrayList<>();
+        fragments.add(BeautyFragment.newInstance("", ""));
+        fragments.add(VideoFragment.newInstance("", ""));
+
+        adapter = new ITPagerAdapter(getChildFragmentManager(), tabTitle, fragments);
+        vpIT.setAdapter(adapter);
+        tblIT.setupWithViewPager(vpIT);
         tblIT.setTabsFromPagerAdapter(adapter);
     }
 

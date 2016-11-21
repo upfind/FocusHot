@@ -1,0 +1,39 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.upfinder.focushot.Fragment.AboutFragment"
+    >
+
+    <Button
+        android:id="@+id/btnGoView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/etVIPUrl"
+        android:layout_alignBottom="@+id/etVIPUrl"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="GO"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etVIPUrl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="71dp"
+        android:text="在上边输入框中输入您想要看的视频的地址 \n 支持优酷VIP，腾讯视频VIP 爱奇艺VIP 芒果VIP 乐视VIP视频网站的资源 \n 注意不支持点券点播只支持VIP免费"
+        android:textColor="@color/colorAccent"/>
+
+    <EditText
+        android:id="@+id/etVIPUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入您要看的视频链接地址"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"/>
+
+
+</RelativeLayout>
