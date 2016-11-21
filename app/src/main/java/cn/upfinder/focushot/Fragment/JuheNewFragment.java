@@ -2,6 +2,7 @@ package cn.upfinder.focushot.Fragment;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.upfinder.focushot.Activity.BrowserActivity;
 import cn.upfinder.focushot.Activity.WebClientActivity;
 import cn.upfinder.focushot.Adapter.JuheNewsAdapter;
 import cn.upfinder.focushot.Bean.Juhe.JuheNews;
@@ -86,8 +88,9 @@ public class JuheNewFragment extends BaseFragment implements JuheNewContract.Vie
         adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getContext(), WebClientActivity.class);
-                intent.putExtra(WebClientActivity.INTENT_EXTRA_URL, adapter.getItem(position).getUrl());
+                Intent intent = new Intent(getContext(), BrowserActivity.class);
+//                intent.setData(Uri.parse(adapter.getItem(position).getUrl()));
+                intent.setData(Uri.parse("http://www.miaopai.com/show/BL0xXGQvC3qU06IZwl0YSQ__.htm"));
                 startActivity(intent);
             }
         });
