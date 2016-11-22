@@ -254,15 +254,16 @@ public class X5WebView extends WebView {
         paint.setColor(0x7fff0000);
         paint.setTextSize(24.f);
         paint.setAntiAlias(true);
-        if (getX5WebViewExtension() != null) {
-            canvas.drawText(this.getContext().getPackageName() + "-pid:" + android.os.Process.myPid(), 10, 50, paint);
-            canvas.drawText("X5  Core:" + QbSdk.getTbsVersion(this.getContext()), 10, 100, paint);
-        } else {
-            canvas.drawText(this.getContext().getPackageName() + "-pid:" + android.os.Process.myPid(), 10, 50, paint);
-            canvas.drawText("Sys Core", 10, 100, paint);
-        }
-        canvas.drawText(Build.MANUFACTURER, 10, 150, paint);
-        canvas.drawText(Build.MODEL, 10, 200, paint);
+        //画出版本号等测试信息
+//        if (getX5WebViewExtension() != null) {
+//            canvas.drawText(this.getContext().getPackageName() + "-pid:" + android.os.Process.myPid(), 10, 50, paint);
+//            canvas.drawText("X5  Core:" + QbSdk.getTbsVersion(this.getContext()), 10, 100, paint);
+//        } else {
+//            canvas.drawText(this.getContext().getPackageName() + "-pid:" + android.os.Process.myPid(), 10, 50, paint);
+//            canvas.drawText("Sys Core", 10, 100, paint);
+//        }
+//        canvas.drawText(Build.MANUFACTURER, 10, 150, paint);
+//        canvas.drawText(Build.MODEL, 10, 200, paint);
         canvas.restore();
         return ret;
     }

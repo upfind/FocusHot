@@ -26,8 +26,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
@@ -54,18 +56,10 @@ public class BrowserActivity extends Activity {
      */
     private X5WebView mWebView;
     private ViewGroup mViewParent;
-    private ImageButton mBack;
-    private ImageButton mForward;
-    private ImageButton mRefresh;
-    private ImageButton mExit;
-    private ImageButton mHome;
-    private ImageButton mMore;
-    private ImageButton mClearData;
-    private ImageButton mOpenFile;
-    private Button mGo;
-    private EditText mUrl;
-
-    private RelativeLayout mMenu;
+    private ImageView ivWebBack;
+    private ImageView ivWebRefresh;
+    private ImageView ivWebClose;
+    private TextView tvWebTitle;
 
     private static final String mHomeUrl = "http://app.html5.qq.com/navi/index";
     private static final String TAG = "SdkDemo";
@@ -128,21 +122,26 @@ public class BrowserActivity extends Activity {
     }
 
     private void changGoForwardButton(WebView view) {
-        if (view.canGoBack())
-            mBack.setAlpha(enable);
-        else
-            mBack.setAlpha(disable);
-        if (view.canGoForward())
-            mForward.setAlpha(enable);
-        else
-            mForward.setAlpha(disable);
-        if (view.getUrl() != null && view.getUrl().equalsIgnoreCase(mHomeUrl)) {
-            mHome.setAlpha(disable);
-            mHome.setEnabled(false);
+        if (view.canGoBack()) {
+            ivWebClose.setVisibility(View.VISIBLE);
+            ivWebBack.setAlpha(enable);
+            ivWebBack.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mWebView.goBack();
+                }
+            });
         } else {
-            mHome.setAlpha(enable);
-            mHome.setEnabled(true);
+            ivWebClose.setVisibility(View.GONE);
+            ivWebBack.setAlpha(enable);
+            ivWebBack.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
         }
+
     }
 
     private void initProgressBar() {
@@ -192,7 +191,6 @@ public class BrowserActivity extends Activity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                moreMenuClose();
                 // mTestHandler.sendEmptyMessage(MSG_OPEN_TEST_URL);
                 mTestHandler.sendEmptyMessageDelayed(MSG_OPEN_TEST_URL, 5000);// 5s?
                 if (Integer.parseInt(android.os.Build.VERSION.SDK) >= 16)
@@ -206,15 +204,14 @@ public class BrowserActivity extends Activity {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 TbsLog.d(TAG, "title: " + title);
-                if (mUrl == null)
-                    return;
+
                 if (!mWebView.getUrl().equalsIgnoreCase(mHomeUrl)) {
                     if (title != null && title.length() > MAX_LENGTH)
-                        mUrl.setText(title.subSequence(0, MAX_LENGTH) + "...");
+                        tvWebTitle.setText(title.subSequence(0, MAX_LENGTH) + "...");
                     else
-                        mUrl.setText(title);
+                        tvWebTitle.setText(title);
                 } else {
-                    mUrl.setText("");
+                    tvWebTitle.setText("");
                 }
             }
 
@@ -237,8 +234,8 @@ public class BrowserActivity extends Activity {
                                         String arg3, long arg4) {
                 TbsLog.d(TAG, "url: " + arg0);
                 new AlertDialog.Builder(BrowserActivity.this)
-                        .setTitle("�Ƿ�����")
-                        .setPositiveButton("yes",
+                        .setTitle("确定下载？")
+                        .setPositiveButton("是",
                                 new DialogInterface.OnClickListener() {
 
                                     @Override
@@ -250,7 +247,7 @@ public class BrowserActivity extends Activity {
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 })
-                        .setNegativeButton("no",
+                        .setNegativeButton("否",
                                 new DialogInterface.OnClickListener() {
 
                                     @Override
@@ -313,203 +310,35 @@ public class BrowserActivity extends Activity {
         CookieSyncManager.getInstance().sync();
     }
 
-    private void moreMenuClose() {
-        if (mMenu != null && mMenu.getVisibility() == View.VISIBLE) {
-            mMenu.setVisibility(View.GONE);
-            mMore.setImageDrawable(getResources().getDrawable(R.drawable.theme_toolbar_btn_menu_fg_normal));
-        }
-    }
 
     private void initBtnListenser() {
-        mBack = (ImageButton) findViewById(R.id.btnBack1);
-        mForward = (ImageButton) findViewById(R.id.btnForward1);
-        mRefresh = (ImageButton) findViewById(R.id.btnRefresh1);
-        mExit = (ImageButton) findViewById(R.id.btnExit1);
-        mHome = (ImageButton) findViewById(R.id.btnHome1);
-        mGo = (Button) findViewById(R.id.btnGo1);
-        mUrl = (EditText) findViewById(R.id.editUrl1);
-        mMore = (ImageButton) findViewById(R.id.btnMore);
-        mMenu = (RelativeLayout) findViewById(R.id.menuMore);
-        mClearData = (ImageButton) findViewById(R.id.btnClearData);
-        mOpenFile = (ImageButton) findViewById(R.id.btnOpenFile);
+        ivWebBack = (ImageView) findViewById(R.id.ivWebBack);
+
+        ivWebRefresh = (ImageView) findViewById(R.id.ivWebRefresh);
+        tvWebTitle = (TextView) findViewById(R.id.tvWebTitle);
+        ivWebClose = (ImageView) findViewById(R.id.ivWebClose);
 
         if (Integer.parseInt(android.os.Build.VERSION.SDK) >= 16) {
-            mBack.setAlpha(disable);
-            mForward.setAlpha(disable);
-            mHome.setAlpha(disable);
+            ivWebBack.setAlpha(disable);
         }
-        mHome.setEnabled(false);
 
 
-        mBack.setOnClickListener(new OnClickListener() {
-
+        ivWebClose.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v) {
-                moreMenuClose();
-                if (mWebView != null && mWebView.canGoBack())
-                    mWebView.goBack();
+            public void onClick(View view) {
+                finish();
             }
         });
 
-        mForward.setOnClickListener(new OnClickListener() {
+        ivWebRefresh.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                moreMenuClose();
-                if (mWebView != null && mWebView.canGoForward())
-                    mWebView.goForward();
-            }
-        });
-
-        mRefresh.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                moreMenuClose();
                 if (mWebView != null)
                     mWebView.reload();
             }
         });
 
-
-        mGo.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                moreMenuClose();
-                String url = mUrl.getText().toString();
-                mWebView.loadUrl(url);
-                mWebView.requestFocus();
-            }
-        });
-
-        mMore.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (mMenu.getVisibility() == View.GONE) {
-                    mMenu.setVisibility(View.VISIBLE);
-                    mMore.setImageDrawable(getResources().getDrawable(R.drawable.theme_toolbar_btn_menu_fg_pressed));
-                } else {
-                    mMenu.setVisibility(View.GONE);
-                    mMore.setImageDrawable(getResources().getDrawable(R.drawable.theme_toolbar_btn_menu_fg_normal));
-                }
-            }
-        });
-
-        mClearData.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                moreMenuClose();
-//				QbSdk.clearAllWebViewCache(getApplicationContext(),false);
-                //QbSdk.reset(getApplicationContext());
-            }
-        });
-
-        mOpenFile.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("*/*");
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                try {
-                    BrowserActivity.this.startActivityForResult(Intent.createChooser(intent, "choose file"), 1);
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(BrowserActivity.this, "完成", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-        mUrl.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                moreMenuClose();
-                if (hasFocus) {
-                    mGo.setVisibility(View.VISIBLE);
-                    mRefresh.setVisibility(View.GONE);
-                    if (null == mWebView.getUrl()) return;
-                    if (mWebView.getUrl().equalsIgnoreCase(mHomeUrl)) {
-                        mUrl.setText("");
-                        mGo.setText("首页");
-                        mGo.setTextColor(0X6F0F0F0F);
-                    } else {
-                        mUrl.setText(mWebView.getUrl());
-                        mGo.setText("进入");
-                        mGo.setTextColor(0X6F0000CD);
-                    }
-                } else {
-                    mGo.setVisibility(View.GONE);
-                    mRefresh.setVisibility(View.VISIBLE);
-                    String title = mWebView.getTitle();
-                    if (title != null && title.length() > MAX_LENGTH)
-                        mUrl.setText(title.subSequence(0, MAX_LENGTH) + "...");
-                    else
-                        mUrl.setText(title);
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                }
-            }
-
-        });
-
-        mUrl.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-
-                String url = null;
-                if (mUrl.getText() != null) {
-                    url = mUrl.getText().toString();
-                }
-
-                if (url == null
-                        || mUrl.getText().toString().equalsIgnoreCase("")) {
-                    mGo.setText("请输入网址");
-                    mGo.setTextColor(0X6F0F0F0F);
-                } else {
-                    mGo.setText("进入");
-                    mGo.setTextColor(0X6F0000CD);
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
-
-        mHome.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                moreMenuClose();
-                if (mWebView != null)
-                    mWebView.loadUrl(mHomeUrl);
-            }
-        });
-
-
-        mExit.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                android.os.Process.killProcess(Process.myPid());
-            }
-
-        });
     }
 
     @Override
@@ -567,7 +396,6 @@ public class BrowserActivity extends Activity {
 
                     Uri uri = data.getData();
                     String path = uri.getPath();
-
 
                     break;
                 default:

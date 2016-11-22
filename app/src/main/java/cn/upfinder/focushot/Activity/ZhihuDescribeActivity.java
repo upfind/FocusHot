@@ -71,7 +71,7 @@ public class ZhihuDescribeActivity extends AppCompatActivity implements ZhihuDes
         tbTop.setTitle("知乎日报");
         tbTop.setBackgroundColor(getColor(R.color.colorPrimary));
         setSupportActionBar(tbTop);
-        tbTop.setNavigationIcon(R.drawable.ic_arrow_back_white_36dp);
+        tbTop.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         svRefreshLoad.setListener(this);
         svRefreshLoad.setHeader(new DefaultHeader(context));
 

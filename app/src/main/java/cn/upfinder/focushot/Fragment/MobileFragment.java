@@ -2,13 +2,12 @@ package cn.upfinder.focushot.Fragment;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import cn.upfinder.focushot.Activity.WebClientActivity;
+import cn.upfinder.focushot.Activity.BrowserActivity;
 import cn.upfinder.focushot.Adapter.AndroidAdapter;
 import cn.upfinder.focushot.Bean.gank.GankData;
 import cn.upfinder.focushot.Contract.MobileContract;
@@ -90,8 +88,8 @@ public class MobileFragment extends BaseFragment implements MobileContract.View,
             @Override
             public void onItemClick(View view, int position) {
 
-                Intent intent = new Intent(getContext(), WebClientActivity.class);
-                intent.putExtra(WebClientActivity.INTENT_EXTRA_URL, adapter.getItem(position).getUrl());
+                Intent intent = new Intent(getContext(), BrowserActivity.class);
+                intent.setData(Uri.parse(adapter.getItem(position).getUrl()));
                 startActivity(intent);
             }
         });

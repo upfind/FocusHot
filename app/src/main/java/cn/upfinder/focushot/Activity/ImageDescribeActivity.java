@@ -78,7 +78,7 @@ public class ImageDescribeActivity extends AppCompatActivity {
         });
 
 
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_36dp);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
