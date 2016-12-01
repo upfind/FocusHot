@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import cn.upfinder.focushot.Fragment.AboutFragment;
 import cn.upfinder.focushot.Fragment.BeautyFragment;
+import cn.upfinder.focushot.Fragment.QiuBaiFragment;
 import cn.upfinder.focushot.Fragment.TabPagerFragment;
 import cn.upfinder.focushot.Fragment.SwipeFragment;
 import cn.upfinder.focushot.Fragment.ZhihuDailyFragment;
@@ -29,9 +30,8 @@ public class HomeActivity extends AppCompatActivity
     private TabPagerFragment newsTabFragment; //聚合新闻
     private FragmentManager fragmentManager;
     private TabPagerFragment itTabFragment; //IT资讯
-    private SwipeFragment swipeFragment; //测试
+    private QiuBaiFragment qiuBaiFragment; //测试
     private TabPagerFragment mediaTabFragment; //多媒体
-
     private AboutFragment aboutFragment; //关于我
 
     private Toolbar toolbar;
@@ -51,6 +51,8 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
         rlContent = (RelativeLayout) findViewById(R.id.content_home);
         fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentById(R.id.content_home);
@@ -133,11 +135,11 @@ public class HomeActivity extends AppCompatActivity
                 toolbar.setTitle(getString(R.string.title_fragment_it));
                 break;
             case R.id.nav_joke:
-                if (swipeFragment != null) {
-                    transaction.show(swipeFragment);
+                if (qiuBaiFragment != null) {
+                    transaction.show(qiuBaiFragment);
                 } else {
-                    swipeFragment = SwipeFragment.newInstance("", "");
-                    transaction.add(R.id.content_home, swipeFragment);
+                    qiuBaiFragment = QiuBaiFragment.newInstance("", "");
+                    transaction.add(R.id.content_home, qiuBaiFragment);
                 }
                 toolbar.setTitle(getString(R.string.title_fragment_jock));
                 break;
@@ -172,8 +174,8 @@ public class HomeActivity extends AppCompatActivity
         if (itTabFragment != null) {
             fragmentTransaction.hide(itTabFragment);
         }
-        if (swipeFragment != null) {
-            fragmentTransaction.hide(swipeFragment);
+        if (qiuBaiFragment != null) {
+            fragmentTransaction.hide(qiuBaiFragment);
         }
         if (mediaTabFragment != null) {
             fragmentTransaction.hide(mediaTabFragment);

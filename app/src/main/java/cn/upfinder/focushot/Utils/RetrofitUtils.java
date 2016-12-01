@@ -4,6 +4,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * 封装一个retrofit集成0kHttp3的抽象基类
@@ -13,10 +14,10 @@ public abstract class RetrofitUtils {
     private static Retrofit gankRetrofit;
     private static Retrofit zhihuRetrofit;
     private static Retrofit juheRetrofit;
+    private static Retrofit qiuBaiRetrofit;
 
-    private static OkHttpClient gankHttpClient;
-    private static OkHttpClient zhihuHttpClient;
-    private static OkHttpClient juheHttpClient;
+    private static OkHttpClient okHttpClient;
+
 
     /**
      * 获取GankRetrofit对象
@@ -25,8 +26,8 @@ public abstract class RetrofitUtils {
 
         if (null == gankRetrofit) {
 
-            if (null == gankHttpClient) {
-                gankHttpClient = OkHttp3Utils.getOkHttpClient();
+            if (null == okHttpClient) {
+                okHttpClient = OkHttp3Utils.getOkHttpClient();
             }
             //Retrofit2后使用build设计模式
             gankRetrofit = new Retrofit.Builder()
@@ -37,7 +38,7 @@ public abstract class RetrofitUtils {
                     //添加回调库，采用RxJava
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     //设置使用okhttp网络请求
-                    .client(gankHttpClient)
+                    .client(okHttpClient)
                     .build();
         }
         return gankRetrofit;
@@ -49,8 +50,8 @@ public abstract class RetrofitUtils {
     public static Retrofit getZhihuRetrofit() {
 
         if (null == zhihuRetrofit) {
-            if (null == zhihuHttpClient) {
-                zhihuHttpClient = OkHttp3Utils.getOkHttpClient();
+            if (null == okHttpClient) {
+                okHttpClient = OkHttp3Utils.getOkHttpClient();
             }
             //Retrofit2后使用build设计模式
             zhihuRetrofit = new Retrofit.Builder()
@@ -61,7 +62,7 @@ public abstract class RetrofitUtils {
                     //添加回调库，采用RxJava
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     //设置使用okhttp网络请求
-                    .client(zhihuHttpClient)
+                    .client(okHttpClient)
                     .build();
         }
         return zhihuRetrofit;
@@ -73,17 +74,41 @@ public abstract class RetrofitUtils {
     public static Retrofit getJuheRetrofit() {
 
         if (juheRetrofit == null) {
-            if (juheHttpClient == null) {
-                juheHttpClient = OkHttp3Utils.getOkHttpClient();
+            if (okHttpClient == null) {
+                okHttpClient = OkHttp3Utils.getOkHttpClient();
             }
             juheRetrofit = new Retrofit.Builder()
                     .baseUrl("http://v.juhe.cn/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .client(juheHttpClient)
+                    .client(okHttpClient)
                     .build();
         }
         return juheRetrofit;
+    }
+
+
+    /*
+    * 获取QiuBaiRetrofit对象
+    * */
+    public static Retrofit getQiuBaiRetrofit() {
+        if (qiuBaiRetrofit == null) {
+            if (okHttpClient == null) {
+                okHttpClient = OkHttp3Utils.getOkHttpClient();
+            }
+            qiuBaiRetrofit = new Retrofit.Builder()
+                    .baseUrl("http://www.qiushibaike.com")
+                    //添加转化库，默认是Gson  //返回字符串
+                    .addConverterFactory(ScalarsConverterFactory.create())
+                    //添加回调库，采用RxJava
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    //设置使用okhttp网络请求
+                    .client(okHttpClient)
+                    .build();
+        }
+
+        return qiuBaiRetrofit;
+
     }
 
 }

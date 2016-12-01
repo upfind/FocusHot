@@ -2,11 +2,13 @@ package cn.upfinder.focushot.API;
 
 import java.util.ArrayList;
 
+import cn.upfinder.focushot.Bean.Jock.QiuBaiBean;
 import cn.upfinder.focushot.Bean.Juhe.JuheNews;
 import cn.upfinder.focushot.Bean.gank.GankData;
 import cn.upfinder.focushot.Bean.zhihu.Daily;
 import cn.upfinder.focushot.Bean.zhihu.DailyItem;
 import cn.upfinder.focushot.Bean.zhihu.Story;
+import cn.upfinder.focushot.Utils.ParseHtmlUtil;
 import cn.upfinder.focushot.Utils.RetrofitUtils;
 import rx.Observable;
 import rx.Observer;
@@ -33,6 +35,9 @@ public class ApiManage {
     * the juhe Api
     * */
     private JuheApi juheApi;
+
+    //QiuBaiApi
+    private QiuBaiApi qiuBaiApi;
 
     private Object monitor = new Object();
 
@@ -92,6 +97,17 @@ public class ApiManage {
             }
         }
         return juheApi;
+    }
+
+    private QiuBaiApi getQiuBaiService() {
+        if (qiuBaiApi == null) {
+            synchronized (monitor) {
+                if (qiuBaiApi == null) {
+                    qiuBaiApi = RetrofitUtils.getQiuBaiRetrofit().create(QiuBaiApi.class);
+                }
+            }
+        }
+        return qiuBaiApi;
     }
 
     public void getGankData(String type, int page, Observer<ArrayList<GankData.ResultsBean>> observer) {
@@ -158,6 +174,14 @@ public class ApiManage {
                 return dataBeanArrayList;
             }
         });
+        setSubscribe(observable, observer);
+    }
+
+
+    /*获取糗事百科的数据
+    * */
+    public void getQiuBaiJock(int page, Observer<ArrayList<QiuBaiBean>> observer) {
+        Observable<ArrayList<QiuBaiBean>> observable = getQiuBaiService().getQiuBaiList(page).map(ParseHtmlUtil.getStringFunc1()).map(ParseHtmlUtil.getQiuBaiListFunc());
         setSubscribe(observable, observer);
     }
 
