@@ -116,7 +116,7 @@ public class TabPagerFragment extends Fragment {
         Log.e(TAG, "initView: 初始化新闻相关的 ");
         tabTitle = new ArrayList<>();
         tabTitle.add("头条");
-        tabTitle.add("知乎");
+//        tabTitle.add("知乎");
         tabTitle.add("国内");
         tabTitle.add("娱乐");
         tabTitle.add("国际");
@@ -130,7 +130,7 @@ public class TabPagerFragment extends Fragment {
 
         fragments = new ArrayList<>();
         fragments.add(JuheNewFragment.newInstance(JuheNewFragment.ARG_TOP));
-        fragments.add(ZhihuDailyFragment.newInstance("", ""));
+//        fragments.add(ZhihuDailyFragment.newInstance("", ""));
         fragments.add(JuheNewFragment.newInstance(JuheNewFragment.ARG_GUONEI));
         fragments.add(JuheNewFragment.newInstance(JuheNewFragment.ARG_YULE));
         fragments.add(JuheNewFragment.newInstance(JuheNewFragment.ARG_GUOJI));

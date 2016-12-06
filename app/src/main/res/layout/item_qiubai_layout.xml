@@ -3,7 +3,9 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="@dimen/dp_4"
                 android:background="@color/white"
                 android:padding="8dp"
     >
@@ -19,9 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivAuthorImg"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/dp_4"
+        android:fontFamily="casual"
+        android:padding="@dimen/recovery_default_margin_8dp"
         android:text="今天。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。明天。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。后天。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textSize="15sp"
         android:typeface="serif"/>
 
     <TextView
@@ -30,14 +35,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/tvQiuBaiContent"
-        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/tvQiuBaiContent"
+        android:layout_marginLeft="13dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+
+
+        android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_favorite_red_400_18dp"
         android:drawablePadding="@dimen/dp_4"
-        android:text="2049"
-        />
+        android:text="2049"/>
 
     <ImageView
         android:id="@+id/ivShare"
@@ -45,7 +51,8 @@
         android:layout_height="@dimen/dp_36"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/tvLiked"
+        android:layout_below="@+id/tvQiuBaiContent"
+        android:layout_marginRight="16dp"
         android:padding="@dimen/dp_10"
         app:srcCompat="@drawable/ic_share_blue_600_24dp"/>
 
@@ -53,15 +60,16 @@
         android:id="@+id/tvAuthorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp"
+        android:layout_above="@+id/tvQiuBaiContent"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_toEndOf="@+id/ivAuthorImg"
+        android:layout_toRightOf="@+id/ivAuthorImg"
         android:fontFamily="sans-serif-condensed"
         android:text="upfinder"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textStyle="normal|bold"
-        android:layout_above="@+id/tvQiuBaiContent"
-        android:layout_toRightOf="@+id/ivAuthorImg"
-        android:layout_toEndOf="@+id/ivAuthorImg"
-        android:layout_marginBottom="11dp"/>
+        android:textSize="12sp"
+        android:textStyle="normal|bold"/>
 
 </RelativeLayout>
