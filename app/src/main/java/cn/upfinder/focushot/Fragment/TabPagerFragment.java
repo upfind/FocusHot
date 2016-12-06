@@ -154,10 +154,12 @@ public class TabPagerFragment extends Fragment {
         Log.d(TAG, "initMediaFragments: 初始化多媒体相关的");
         tabTitle = new ArrayList<>();
         tabTitle.add("妹子");
+        tabTitle.add("动图");
         tabTitle.add("休息视频");
 
         fragments = new ArrayList<>();
         fragments.add(BeautyFragment.newInstance("", ""));
+        fragments.add(QiuBaiGifFragment.newInstance("", ""));
         fragments.add(VideoFragment.newInstance("", ""));
 
         adapter = new ITPagerAdapter(getChildFragmentManager(), tabTitle, fragments);

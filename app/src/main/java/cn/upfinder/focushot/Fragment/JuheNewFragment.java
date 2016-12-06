@@ -71,8 +71,8 @@ public class JuheNewFragment extends BaseFragment implements JuheNewContract.Vie
 
 
     @Override
-    protected View initView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_juhe_new, container, false);
+    protected void initView() {
+
     }
 
     @Override
@@ -104,7 +104,7 @@ public class JuheNewFragment extends BaseFragment implements JuheNewContract.Vie
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        View rootView = inflater.inflate(R.layout.fragment_juhe_new, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
     }

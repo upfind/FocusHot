@@ -3,6 +3,7 @@ package cn.upfinder.focushot.API;
 import java.util.ArrayList;
 
 import cn.upfinder.focushot.Bean.Jock.QiuBaiBean;
+import cn.upfinder.focushot.Bean.Jock.QiuBaiGif;
 import cn.upfinder.focushot.Bean.Juhe.JuheNews;
 import cn.upfinder.focushot.Bean.gank.GankData;
 import cn.upfinder.focushot.Bean.zhihu.Daily;
@@ -184,6 +185,14 @@ public class ApiManage {
         Observable<ArrayList<QiuBaiBean>> observable = getQiuBaiService().getQiuBaiList(page).map(ParseHtmlUtil.getStringFunc1()).map(ParseHtmlUtil.getQiuBaiListFunc());
         setSubscribe(observable, observer);
     }
+
+
+    /*获取糗百gif 列表*/
+    public void getQiuBaiGif(int page, Observer<ArrayList<QiuBaiGif>> observer) {
+        Observable<ArrayList<QiuBaiGif>> observable = getQiuBaiService().getQiuBaiGifList(page).map(ParseHtmlUtil.getStringFunc1()).map(ParseHtmlUtil.getQiuBaiGifListFunc());
+        setSubscribe(observable, observer);
+    }
+
 
     /*
     * 插入观察者，设置监听

@@ -65,8 +65,8 @@ public class ZhihuDailyFragment extends BaseFragment implements ZhihuDailyContra
 
 
     @Override
-    protected View initView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_zhihu_daily, container, false);
+    protected void initView() {
+
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ZhihuDailyFragment extends BaseFragment implements ZhihuDailyContra
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                if (dy >0){ //向下滚动
+                if (dy > 0) { //向下滚动
 //                    int visibleItemCount =
                 }
             }
@@ -144,7 +144,7 @@ public class ZhihuDailyFragment extends BaseFragment implements ZhihuDailyContra
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        View rootView = inflater.inflate(R.layout.fragment_zhihu_daily, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
     }

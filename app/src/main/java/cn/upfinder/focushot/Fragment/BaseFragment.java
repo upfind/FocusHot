@@ -18,14 +18,6 @@ public abstract class BaseFragment extends Fragment {
 
     private View rootView;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = initView(inflater, container);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -34,8 +26,13 @@ public abstract class BaseFragment extends Fragment {
         initData();
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView();
+    }
 
-    protected abstract View initView(LayoutInflater inflater, ViewGroup container);
+    protected abstract void initView();
 
     protected abstract void initListener();
 

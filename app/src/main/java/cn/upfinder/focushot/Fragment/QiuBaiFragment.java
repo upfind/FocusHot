@@ -14,14 +14,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.upfinder.focushot.Adapter.QiuBaiAdapter;
-import cn.upfinder.focushot.Adapter.StoryAdapter;
 import cn.upfinder.focushot.Bean.Jock.QiuBaiBean;
-import cn.upfinder.focushot.Bean.zhihu.Story;
 import cn.upfinder.focushot.Contract.QiuBaiContract;
 import cn.upfinder.focushot.Presenter.QiuBaiPresenter;
 import cn.upfinder.focushot.R;
-import cn.upfinder.uilibrary.Adapter.BaseQuickAdapter;
 import cn.upfinder.uilibrary.View.ProgressTypeLayout;
 import cn.upfinder.uilibrary.View.SwipeView;
 import cn.upfinder.uilibrary.View.container.DefaultFooter;
@@ -38,7 +36,6 @@ public class QiuBaiFragment extends BaseFragment implements SwipeView.OnFreshLis
     SwipeView svRefreshLoad;
     @BindView(R.id.ptlProgress)
     ProgressTypeLayout ptlProgress;
-
 
     private QiuBaiPresenter mvpPresenter;
     private QiuBaiAdapter adapter;
@@ -73,11 +70,14 @@ public class QiuBaiFragment extends BaseFragment implements SwipeView.OnFreshLis
         }
     }
 
-
+    @Nullable
     @Override
-    protected View initView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_swipe, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_swipe, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
+
 
     @Override
     protected void initListener() {
@@ -106,6 +106,11 @@ public class QiuBaiFragment extends BaseFragment implements SwipeView.OnFreshLis
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
 

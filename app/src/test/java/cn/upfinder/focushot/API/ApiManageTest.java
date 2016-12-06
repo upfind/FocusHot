@@ -2,7 +2,6 @@ package cn.upfinder.focushot.API;
 
 import android.util.Log;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,19 +10,20 @@ import java.util.ArrayList;
 import cn.upfinder.focushot.Bean.Jock.QiuBaiGif;
 import rx.Observer;
 
+import static org.junit.Assert.*;
+
 /**
- * Created by upfinder on 2016/10/28 0028.
+ * Created by Administrator on 2016/12/6 0006.
  */
 public class ApiManageTest {
-
 
     ApiManage apiManage;
 
     @Before
     public void setUp() throws Exception {
         apiManage = ApiManage.getInstence();
-    }
 
+    }
 
     @Test
     public void getQiuBaiGif() throws Exception {
@@ -47,6 +47,5 @@ public class ApiManageTest {
             }
         });
     }
-
 
 }

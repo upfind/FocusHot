@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.upfinder.focushot.Activity.BrowserActivity;
 import cn.upfinder.focushot.Adapter.AndroidAdapter;
 import cn.upfinder.focushot.Bean.gank.GankData;
@@ -37,6 +38,7 @@ public class MobileFragment extends BaseFragment implements MobileContract.View,
     RecyclerView rvAndroid;
     @BindView(R.id.srfContent)
     SwipeRefreshLayout srfContent;
+
 
     private String paramType;
 
@@ -66,10 +68,14 @@ public class MobileFragment extends BaseFragment implements MobileContract.View,
     }
 
 
+    @Nullable
     @Override
-    protected View initView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_mobile, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_mobile, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
+
 
     @Override
     protected void initListener() {
@@ -106,6 +112,11 @@ public class MobileFragment extends BaseFragment implements MobileContract.View,
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+    }
+
+    @Override
+    protected void initView() {
 
     }
 

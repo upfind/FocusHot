@@ -70,9 +70,10 @@ public class VideoFragment extends BaseFragment implements VideoContract.View, B
         return view;
     }
 
+
     @Override
-    protected View initView(LayoutInflater inflater, ViewGroup container) {
-        return null;
+    protected void initView() {
+
     }
 
     @Override

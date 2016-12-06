@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.upfinder.focushot.Activity.ImageDescribeActivity;
 import cn.upfinder.focushot.Adapter.BeautyAdapter;
 import cn.upfinder.focushot.Bean.gank.GankData;
@@ -33,6 +34,7 @@ public class BeautyFragment extends BaseFragment implements BeautyContract.View,
     RecyclerView rvBeauty;
     @BindView(R.id.srlContent)
     SwipeRefreshLayout srlContent;
+
 
     private String mParam1;
     private String mParam2;
@@ -67,13 +69,16 @@ public class BeautyFragment extends BaseFragment implements BeautyContract.View,
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_beauty, container, false);
+        ButterKnife.bind(this, view);
+        return view;
 
     }
 
+
     @Override
-    protected View initView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_beauty, container, false);
+    protected void initView() {
+
     }
 
     @Override
