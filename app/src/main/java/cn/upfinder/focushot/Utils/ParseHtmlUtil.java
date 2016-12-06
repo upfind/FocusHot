@@ -1,5 +1,7 @@
 package cn.upfinder.focushot.Utils;
 
+import android.util.Log;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,6 +19,7 @@ import rx.functions.Func1;
  */
 
 public class ParseHtmlUtil {
+    private static final String TAG = ParseHtmlUtil.class.getSimpleName();
 
     private static final String TO_CHARSET_NAME = "utf-8";
 
@@ -48,26 +51,32 @@ public class ParseHtmlUtil {
             qiuBaiListFunc = new Func1<String, ArrayList<QiuBaiBean>>() {
                 @Override
                 public ArrayList<QiuBaiBean> call(String s) {
-                    Document document = Jsoup.parse(s);
-                    Elements elements = document.select("div.article.block.untagged.mb15");
                     ArrayList<QiuBaiBean> qiuBaiJockEntityArrayList = new ArrayList<QiuBaiBean>();
-                    for (Element item : elements) {
-                        QiuBaiBean qiuBaiJock = new QiuBaiBean();
-                        Element author = item.select("div.author.clearfix").first();
-                        String authorImgUrl = author.select("a").first().select("img").attr("src");
-                        String authorName = author.select("a").first().select("img").attr("alt");
-                        String authorAge = author.select("div.articleGender.womenIcon").text();
-                        Element jock = item.select("div.content").first();
-                        String jockContent = jock.select("span").text();
-                        Element stats = item.select("div.stats").first();
-                        String likedNum = stats.select("i.number").first().text();
-                        qiuBaiJock.setAuthorImgUrl(authorImgUrl);
-                        qiuBaiJock.setAuthorName(authorName);
-                        qiuBaiJock.setContentStr(jockContent);
-                        qiuBaiJock.setAuthorAge(authorAge);
-                        qiuBaiJock.setLikedNum(likedNum);
-                        qiuBaiJockEntityArrayList.add(qiuBaiJock);
+
+                    try {
+                        Document document = Jsoup.parse(s);
+                        Elements elements = document.select("div.article.block.untagged.mb15");
+                        for (Element item : elements) {
+                            QiuBaiBean qiuBaiJock = new QiuBaiBean();
+                            Element author = item.select("div.author.clearfix").first();
+                            String authorImgUrl = author.select("a").first().select("img").attr("src");
+                            String authorName = author.select("a").first().select("img").attr("alt");
+                            String authorAge = author.select("div.articleGender.womenIcon").text();
+                            Element jock = item.select("div.content").first();
+                            String jockContent = jock.select("span").text();
+                            Element stats = item.select("div.stats").first();
+                            String likedNum = stats.select("i.number").first().text();
+                            qiuBaiJock.setAuthorImgUrl(authorImgUrl);
+                            qiuBaiJock.setAuthorName(authorName);
+                            qiuBaiJock.setContentStr(jockContent);
+                            qiuBaiJock.setAuthorAge(authorAge);
+                            qiuBaiJock.setLikedNum(likedNum);
+                            qiuBaiJockEntityArrayList.add(qiuBaiJock);
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, "call: ", e);
                     }
+
                     return qiuBaiJockEntityArrayList;
                 }
             };

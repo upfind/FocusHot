@@ -3,29 +3,16 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white"
                 android:padding="8dp"
     >
 
     <ImageView
         android:id="@+id/ivAuthorImg"
-        android:layout_width="@dimen/dp_60"
-        android:layout_height="@dimen/dp_60"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
         app:srcCompat="@mipmap/ic_launcher"/>
-
-    <TextView
-        android:id="@+id/tvAuthorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ivAuthorImg"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_toEndOf="@+id/ivAuthorImg"
-        android:layout_toRightOf="@+id/ivAuthorImg"
-        android:fontFamily="sans-serif-condensed"
-        android:text="upfinder"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textStyle="normal|bold"/>
 
     <TextView
         android:id="@+id/tvQiuBaiContent"
@@ -34,7 +21,8 @@
         android:layout_below="@+id/ivAuthorImg"
         android:layout_marginTop="8dp"
         android:text="今天。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。明天。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。后天。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:typeface="serif"/>
 
     <TextView
         android:id="@+id/tvLiked"
@@ -53,14 +41,27 @@
 
     <ImageView
         android:id="@+id/ivShare"
-        android:layout_width="36dp"
+        android:layout_width="@dimen/dp_36"
         android:layout_height="@dimen/dp_36"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/tvQiuBaiContent"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="6dp"
-        android:padding="@dimen/dp_4"
+        android:layout_alignTop="@+id/tvLiked"
+        android:padding="@dimen/dp_10"
         app:srcCompat="@drawable/ic_share_blue_600_24dp"/>
+
+    <TextView
+        android:id="@+id/tvAuthorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="upfinder"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textStyle="normal|bold"
+        android:layout_above="@+id/tvQiuBaiContent"
+        android:layout_toRightOf="@+id/ivAuthorImg"
+        android:layout_toEndOf="@+id/ivAuthorImg"
+        android:layout_marginBottom="11dp"/>
 
 </RelativeLayout>

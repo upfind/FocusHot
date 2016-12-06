@@ -12,6 +12,7 @@ import cn.upfinder.focushot.Bean.Jock.QiuBaiBean;
 import cn.upfinder.focushot.R;
 import cn.upfinder.uilibrary.Adapter.BaseQuickAdapter;
 import cn.upfinder.uilibrary.Adapter.BaseViewHolder;
+import cn.upfinder.uilibrary.View.ImageView.GlideCircleTransform;
 
 /**
  * Created by upfinder on 2016/11/30 0030.
@@ -32,6 +33,7 @@ public class QiuBaiAdapter extends BaseQuickAdapter<QiuBaiBean> {
                 .error(R.mipmap.ic_launcher)
                 .placeholder(R.mipmap.ic_launcher)
                 .centerCrop()
+                .transform(new GlideCircleTransform(mContext))
                 .into((ImageView) helper.getView(R.id.ivAuthorImg));
 
         ((TextView) helper.getView(R.id.tvAuthorName)).setText(item.getAuthorName());
